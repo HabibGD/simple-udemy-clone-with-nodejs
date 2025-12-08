@@ -35,8 +35,8 @@ require('./src/models/formateurs/routes/findAllformateurs')(app)
 require('./src/models/cours/routes/createCours')(app)
 require('./src/models/cours/routes/findAllcours')(app)
 require('./src/models/cours/routes/findCoursByid')(app)
-
-
+require('./src/models/cours/routes/updateCours')(app)
+require('./src/models/cours/routes/deleteCours')(app)
 
 
 
