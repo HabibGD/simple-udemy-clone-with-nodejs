@@ -1,5 +1,7 @@
 const Formateur = require('./formateurs/models/formateur')
 const Cour = require('./cours/models/cours')
+const Apprenant = require('./apprenants/models/apprenant')
+
 
 
 
@@ -20,4 +22,22 @@ Cour.belongsTo(Formateur, {
 })
 
 
-module.exports = { Formateur, Cour }
+Apprenant.belongsToMany(Cour, {
+
+    through: 'apprenant_cours',
+    foreignKey: 'apprenant_id',
+    otherKey: 'cour_id'
+})
+
+
+Cour.belongsToMany(Apprenant, {
+    through: 'apprenant_cours',
+    foreignKey: 'cour_id',
+    otherKey: 'apprenant_id'
+})
+
+
+
+
+
+module.exports = { Formateur, Cour, Apprenant }

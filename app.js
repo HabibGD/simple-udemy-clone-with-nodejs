@@ -1,6 +1,6 @@
 const express = require('express')
 const sequelize = require('./src/db/sequelize')
-const { Formateur, Cour } = require('./src/models/index')
+const { Formateur, Cour, Apprenant } = require('./src/models/index')
 
 
 
@@ -28,6 +28,9 @@ sequelize.sync({ alter: true })
 
 require('./src/models/formateurs/routes/createFormateur')(app)
 require('./src/models/formateurs/routes/findAllformateurs')(app)
+require('./src/models/formateurs/routes/findFormateurByid')(app)
+require('./src/models/formateurs/routes/updateFormateur')(app)
+require('./src/models/formateurs/routes/deleteFormateurs')(app)
 
 
 // Cours Endpoints 
@@ -38,13 +41,14 @@ require('./src/models/cours/routes/findCoursByid')(app)
 require('./src/models/cours/routes/updateCours')(app)
 require('./src/models/cours/routes/deleteCours')(app)
 
+// Apprenant Endpoint
 
-
-
-
-
-
-
+require('./src/models/apprenants/routes/createApprenant')(app)
+require('./src/models/apprenants/routes/findAllapprenants')(app)
+require('./src/models/apprenants/routes/findApprenantByid')(app)
+require('./src/models/apprenants/routes/updateApprenant')(app)
+require('./src/models/apprenants/routes/deleteApprenant')(app)
+require('./src/models/apprenants/routes/inscrireCours')(app)
 
 
 
