@@ -10,7 +10,8 @@ module.exports = (app) => {
                 res.json({ message: 'Voici toutes les formations', data: cour })
             })
             .catch(err => {
-                res.json({ message: 'error', error: err.message })
+                const message = 'Nous avons rencontre une erreur , veuillez reessayer plus tard...'
+                res.status(500).json({ message })
             })
     })
     

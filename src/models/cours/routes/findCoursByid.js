@@ -10,11 +10,15 @@ module.exports = (app) => {
         const id = req.params.id
         Cour.findByPk( id , { include:  Formateur, Apprenant })
             .then((cour) => {
+                if(cour === null){
+                    const message = `Il n'existe pas de cour avec l'ID ${req.params.id}`
+                    return res.status(404).json({ message })
+                }
                 res.json({ message: 'Here is the cours...', data: cour })
             })
             .catch(err => {
-                res.json({ message: 'error', error: err.message })
-            })
-
+                const message = 'Nous avons rencontre une erreur , veuillez reessayer plus tard...'
+                res.status(500).json({ message })
+            })           
     })
 }

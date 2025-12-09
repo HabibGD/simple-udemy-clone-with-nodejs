@@ -24,8 +24,6 @@ module.exports = (app) => {
                     const message = 'Nous avons rencontre une erreur lors de la modification de cet apprenant, veuillez reessayer plus tard...'
                     res.status(500).json({ message })
                 })
-
         })
-            
     })
 }

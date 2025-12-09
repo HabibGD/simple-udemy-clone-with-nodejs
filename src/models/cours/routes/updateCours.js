@@ -15,8 +15,16 @@ module.exports = (app) => {
         .then(_ => {
             Cour.findByPk(id)
                 .then(cour => {
+                    if(cour === null){
+                        const message = `Il n'existe pas de cour avec l'ID ${req.params.id}`
+                        return res.status(404).json({ message })
+                    }
                     res.json({ message: 'Cour updated successfully', data: cour })
                 })
         })
+        .catch(err => {
+            const message = 'Nous avons rencontre une erreur , veuillez reessayer plus tard...'
+            res.status(500).json({ message })
+        })        
     })
 }
