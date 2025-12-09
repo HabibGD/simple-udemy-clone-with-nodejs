@@ -10,8 +10,9 @@ module.exports = (app) => {
             .then(apprenant => {
                 res.json({ message: `Added successfully`, data: apprenant })
             })
-            .catch(err => {
-                res.json({ message: 'error', error: err.message })
+            .catch((err) => {
+                const message = 'Impossible d\'ajouter ces informations merci de bien verifier la requete et reessayer..'
+                res.status(500).json({ message })
             })
     })
 }

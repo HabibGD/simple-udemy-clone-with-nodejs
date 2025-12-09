@@ -21,7 +21,7 @@ module.exports = (app) => {
             res.json({ message: 'Inscription reuissi...'})
         }
         catch(error) {
-            res.json({ error: error.message })
+            res.status(500).json({ error: error.message })
         }
     })
 }

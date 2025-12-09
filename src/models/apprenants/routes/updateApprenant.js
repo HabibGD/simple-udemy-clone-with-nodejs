@@ -13,11 +13,17 @@ module.exports = (app) => {
         .then(_ => {
             Apprenant.findByPk(id)
                 .then((apprenant) => {
+                    if(apprenant === null)
+                    {
+                        const message = `L'apprenant avec ID '${req.params.id}' n'existe pas...`
+                        return res.status(404).json({ message })
+                    }
                     res.json({ message: `Apprenant \' ${apprenant.fullName} \' updated successfully`, data: apprenant })
                     })
                 .catch(err => {
-                        res.json({ message: 'error', error: err.message })
-                    })
+                    const message = 'Nous avons rencontre une erreur lors de la modification de cet apprenant, veuillez reessayer plus tard...'
+                    res.status(500).json({ message })
+                })
 
         })
             

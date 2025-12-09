@@ -55,7 +55,12 @@ require('./src/models/apprenants/routes/inscrireCours')(app)
 
 
 
+// Gestion des erreurs 404
 
+app.use(({res}) => {
+    const message = 'impossible de trouver cette page, veuillez bien verifier l\'URL'
+    res.status(404).json({ message })
+})
 
 
 
