@@ -8,10 +8,15 @@ module.exports = (app) => {
 
         Formateur.findByPk(req.params.id, { include: Cour })
             .then((formateur) => {
+                if(formateur === null){
+                    const message = `Le formateur avec ID: ${req.params.id} n'existe pas!`
+                    return res.json({ message })
+                }
                 res.json({ message: 'formateur selected', data: formateur })
             })
             .catch(err => {
-                res.json({ message: 'error founded', error: err.message })
-            })
+                const message = 'Nous avons rencontre des probleme, merci de reesayer plus tard'
+                res.status(500).json({ message })
+            })             
     })
 }

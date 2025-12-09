@@ -23,6 +23,9 @@ module.exports = (app) => {
                 })
         })
         .catch(err => {
+            if(err instanceof ValidationError){
+                res.status(400).json({ message: err.message, data: err })
+            }            
             const message = 'Nous avons rencontre une erreur , veuillez reessayer plus tard...'
             res.status(500).json({ message })
         })        

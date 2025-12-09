@@ -1,3 +1,4 @@
+const { ValidationError } = require('sequelize')
 const Cour = require('../models/cours')
 
 
@@ -9,6 +10,9 @@ module.exports = (app) => {
                 res.json({ message: 'Cours added..', data: cour })
             })
             .catch(err => {
+                if(err instanceof ValidationError){
+                    res.status(400).json({ message: err.message, data: err })
+                }
                 const message = 'Nous avons rencontre une erreur lors de l\'ajout de cette formation, veuillez reessayer plus tard...'
                 res.status(500).json({ message })
             })

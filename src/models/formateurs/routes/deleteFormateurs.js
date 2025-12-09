@@ -7,20 +7,26 @@ module.exports = (app) => {
     app.delete('/api/udemy/formateurs/:id', (req, res) => {
 
         const id = req.params.id
-        Formateur.findByPk(id)
-            .then(formateur => {
-                const formateurDeleted = formateur
+        return  Formateur.findByPk(id)
+                .then(formateur => {
+                    if(formateur === null){
+                        const message = `Le formateur avec ID: ${req.params.id} n'existe pas!`
+                        return res.json({ message })
+                    }
+                    const formateurDeleted = formateur
 
-                Formateur.destroy({
-                    where: { id: id }
-                })
-                .then(_ => {
-                    res.json({ message: `Formateur \' ${formateurDeleted.fullName} \'Deleted successfuly`, data: formateurDeleted })
+                    Formateur.destroy({
+                        where: { id: id }
+                    })
+                    .then(_ => {
+                        res.json({ message: `Formateur \' ${formateurDeleted.fullName} \'Deleted successfuly`, data: formateurDeleted })
+                    })
+                
                 })
                 .catch(err => {
-                    res.json({ message: 'error founded', error: err.message })
-                })
-            })
+                    const message = 'Nous avons rencontre des probleme, merci de reesayer plus tard'
+                    res.status(500).json({ message })
+                })            
 
     })
 }
