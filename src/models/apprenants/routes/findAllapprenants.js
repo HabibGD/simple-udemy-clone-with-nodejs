@@ -1,10 +1,11 @@
 const { Op } = require('sequelize')
 const Apprenant = require('../models/apprenant')
+const auth = require('../../../auth/auth')
 
 
 module.exports = (app) => {
 
-    app.get('/api/udemy/apprenants', (req, res) => {
+    app.get('/api/udemy/apprenants', auth,  (req, res) => {
 
         if(req.query.fullName){
             const fullName = req.query.fullName

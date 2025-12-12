@@ -1,10 +1,11 @@
 const Apprenant = require('../models/apprenant')
 const Cour = require('../../cours/models/cours')
+const auth = require('../../../auth/auth')
 
 
 module.exports = (app) => {
 
-    app.get('/api/udemy/apprenants/:id', (req, res) => {
+    app.get('/api/udemy/apprenants/:id', auth,  (req, res) => {
 
         Apprenant.findByPk(req.params.id, { include: Cour })
             .then(apprenant => {

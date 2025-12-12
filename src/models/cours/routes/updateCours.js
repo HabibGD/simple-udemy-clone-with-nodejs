@@ -1,12 +1,13 @@
 const Cour = require('../models/cours')
 const Formateur = require('../../formateurs/models/formateur')
+const auth = require('../../../auth/auth')
 
 
 
 
 module.exports = (app) => {
 
-    app.put('/api/udemy/cours/:id', (req, res) => {
+    app.put('/api/udemy/cours/:id', auth, (req, res) => {
 
         const id = req.params.id
         Cour.update(req.body, {

@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize')
 
+
 const sequelize = new Sequelize(
     'udemy',
     'root',
@@ -15,5 +16,14 @@ const sequelize = new Sequelize(
 
     }
 )
+
+
+
+
+
+
+
+
+
 
 module.exports = sequelize

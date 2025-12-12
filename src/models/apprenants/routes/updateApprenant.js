@@ -1,10 +1,11 @@
+const auth = require('../../../auth/auth')
 const Apprenant = require('../models/apprenant')
 
 
 
 module.exports = (app) => {
 
-    app.put('/api/udemy/apprenants/:id', (req, res) => {
+    app.put('/api/udemy/apprenants/:id', auth,  (req, res) => {
 
         const id = req.params.id
         Apprenant.update(req.body, {

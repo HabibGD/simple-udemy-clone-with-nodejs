@@ -1,9 +1,10 @@
+const auth = require('../../../auth/auth')
 const Apprenant = require('../models/apprenant')
 
 
 module.exports = (app) => {
 
-    app.delete('/api/udemy/apprenants/:id', (req, res) => {
+    app.delete('/api/udemy/apprenants/:id', auth,  (req, res) => {
 
         const id = req.params.id
         return  Apprenant.findByPk(id)

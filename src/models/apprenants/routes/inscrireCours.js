@@ -1,11 +1,12 @@
 const Apprenant = require('../models/apprenant')
 const Cour = require('../../cours/models/cours')
+const auth = require('../../../auth/auth')
 
 
 
 module.exports = (app) => {
 
-    app.post('/api/udemy/cours/:id/inscrire',  async (req, res) => {
+    app.post('/api/udemy/cours/:id/inscrire', auth,  async (req, res) => {
 
         const { apprenantId } = req.body
         try {

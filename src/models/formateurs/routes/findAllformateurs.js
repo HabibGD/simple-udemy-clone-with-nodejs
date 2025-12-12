@@ -1,12 +1,13 @@
 const Cour = require('../../cours/models/cours')
 const Formateur = require('../models/formateur')
 const { Op } = require('sequelize') // Ce ci est un Operateur Sequelize
+const auth = require('../../../auth/auth')
 
 
 
 module.exports = (app) => {
 
-    app.get('/api/udemy/formateurs', (req, res) => {
+    app.get('/api/udemy/formateurs', auth, (req, res) => {
 
         if(req.query.fullName){
             // Endpoint de recherche des

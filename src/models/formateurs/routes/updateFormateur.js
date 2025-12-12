@@ -1,12 +1,13 @@
 const Formateur = require('../models/formateur')
 const Cour = require('../../cours/models/cours')
 const { ValidationError } = require('sequelize')
+const auth = require('../../../auth/auth')
 
 
 
 module.exports = (app) => {
 
-    app.put('/api/udemy/formateurs/:id', (req, res) => {
+    app.put('/api/udemy/formateurs/:id', auth, (req, res) => {
 
         const id = req.params.id
         Formateur.update(req.body, {

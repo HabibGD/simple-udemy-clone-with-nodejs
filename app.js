@@ -1,6 +1,7 @@
 const express = require('express')
 const sequelize = require('./src/db/sequelize')
 const { Formateur, Cour, Apprenant } = require('./src/models/index')
+const User = require('./src/models/users/models/user')
 
 
 
@@ -51,7 +52,10 @@ require('./src/models/apprenants/routes/deleteApprenant')(app)
 require('./src/models/apprenants/routes/inscrireCours')(app)
 
 
+// Users endpoints
 
+require('./src/models/users/routes/loginUser')(app)
+require('./src/models/users/routes/register')(app)
 
 
 

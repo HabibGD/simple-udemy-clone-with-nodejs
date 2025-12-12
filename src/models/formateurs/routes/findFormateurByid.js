@@ -1,10 +1,11 @@
 const Formateur = require('../models/formateur')
 const Cour = require('../../cours/models/cours')
+const auth = require('../../../auth/auth')
 
 
 module.exports = (app) => {
 
-    app.get('/api/udemy/formateurs/:id', (req, res) => {
+    app.get('/api/udemy/formateurs/:id', auth, (req, res) => {
 
         Formateur.findByPk(req.params.id, { include: Cour })
             .then((formateur) => {
